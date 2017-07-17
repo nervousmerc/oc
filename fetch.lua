@@ -1,4 +1,4 @@
-local os = require("os")
+local shell = require("shell")
 local command = "gitrepo nervousmerc/oc /home/bin"
 
-os.execute(command)
+shell.execute(command)

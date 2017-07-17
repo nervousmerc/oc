@@ -19,7 +19,7 @@ function printInfo(addr, name)
   print("Address: ", addr)
   print("Type: ", conf[name])
   print("Energy stored: ", store.getEnergy())
-  print("\tMax input : ", conf[store.getSourceTier()])
+  print("\tMax input: ", conf[store.getSourceTier()])
   print("\tMax output: ", conf[store.getSinkTier()])
   print("\tCapacity: ", store.getCapacity())
 end

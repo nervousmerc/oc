@@ -5,8 +5,12 @@ local conf = {
   ic2_te_batbox = "BatBox",
   ic2_te_cesu = "CESU",
   ic2_te_mfe = "MFE",
-  ic2_te_mfsu = "MFSU"
-
+  ic2_te_mfsu = "MFSU",
+  [1] = 32,
+  [2] = 128,
+  [3] = 512,
+  [4] = 2048,
+  [5] = 8192
 }
 
 function printInfo(addr, name)

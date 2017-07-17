@@ -2,10 +2,10 @@ local component = require("component")
 local modem = component.modem
 
 local conf = {
-  on = "on"
-  off = "off"
-  status = "status"
-  info = "info"
+  on = "on",
+  off = "off",
+  status = "status",
+  info = "info",
   port = 11
 }
 

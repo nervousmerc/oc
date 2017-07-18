@@ -1,6 +1,6 @@
 local term = require("term")
 local os = require("os")
-local energy = require("energy")
+local energy = require("libenergy")
 
 while true do
   term.clear()

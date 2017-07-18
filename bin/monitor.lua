@@ -1,6 +1,10 @@
+local component = require("component")
 local term = require("term")
 local os = require("os")
 local energy = require("libenergy")
+local gpu = component.gpu
+
+gpu.setResolution(30, 10)
 
 while true do
   term.clear()

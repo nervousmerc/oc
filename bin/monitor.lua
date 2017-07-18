@@ -9,7 +9,7 @@ gpu.setResolution(30, 10)
 while true do
   term.clear()
   for addr, name in pairs(energy.stores) do
-    print(energy.getEnergy(addr, name))
+    print(string.format("%s %.0f", energy.getEnergy(addr, name)))
   end
   os.sleep(2)
 end

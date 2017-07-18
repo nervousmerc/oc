@@ -4,7 +4,7 @@ local os = require("os")
 local energy = require("libenergy")
 local gpu = component.gpu
 
-gpu.setResolution(30, 10)
+gpu.setResolution(15, 5)
 
 while true do
   term.clear()

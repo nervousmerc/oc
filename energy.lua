@@ -16,6 +16,11 @@ energy.conf = {
   [5] = 8192
 }
 
+function energy.getEnergy(addr, name)
+  local store = component.proxy(addr)
+  return energy.conf[name], store.getEnergy()
+end
+
 function energy.printInfo(addr, name)
   local store = component.proxy(addr)
   print("------------")

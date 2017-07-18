@@ -5,7 +5,7 @@ local energy = require("energy")
 while true do
   term.clear()
   for addr, name in pairs(energy.stores) do
-    energy.printInfo(addr, name)
+    print(energy.getEnergy(addr, name))
   end
-  os.sleep(1)
+  os.sleep(2)
 end

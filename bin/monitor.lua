@@ -10,7 +10,7 @@ io.stdout:setvbuf("full")
 while true do
   term.clear()
   for addr, name in pairs(energy.stores) do
-    io.stdout:write((string.format("\n %s %.0f\n", energy.getEnergy(addr, name))))
+    io.stdout:write((string.format("\n %s %.0f\n", energy.getEnergyPercentage(addr, name))))
   end
   io.stdout:flush()
   os.sleep(2)

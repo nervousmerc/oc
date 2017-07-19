@@ -21,6 +21,12 @@ function energy.getEnergy(addr, name)
   return energy.conf[name], store.getEnergy()
 end
 
+function energy.getEnergyPercentage(addr, name)
+  local store = component.proxy(addr)
+  local percent = (store.getEnergy()//store.getCapacity()) * 100
+  return energy.conf[name], percent
+end
+
 function energy.printInfo(addr, name)
   local store = component.proxy(addr)
   print("------------")

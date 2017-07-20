@@ -17,7 +17,11 @@ local conf = {
 -- end
 
 function sendCommand(command, address, port)
-  modem.broadcast(port, command)
+  if address == 'any' then
+    modem.broadcast(port, command)
+  else
+    modem.send(address, port, command)
+  end
   print(("Sending %s to %s:%s"):format(command, address, port))
 end
 

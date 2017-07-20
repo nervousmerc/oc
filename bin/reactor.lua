@@ -25,7 +25,7 @@ function sendCommand(command, address, port)
   print(("Sending %s to %s:%s"):format(command, address, port))
 end
 
-function receiveResponse()
+function receiveResponse(port)
   modem.open(port)
   response = table.pack(event.pull(conf.timeout, "modem_message"))
   modem.close(port)
@@ -54,6 +54,6 @@ local command = args[1]
 sendCommand(command, address, port)
 
 if command == conf.info or command == conf.status then
-  printResponse(receiveResponse())
+  printResponse(receiveResponse(port))
 end
 

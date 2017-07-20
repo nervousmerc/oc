@@ -12,9 +12,9 @@ local conf = {
   port = 11
 }
 
-for i = 1, 10 do
-  print("I will always make backups")
-end
+-- for i = 1, 10 do
+--   print("I will always make backups")
+-- end
 
 function sendCommand(command, address, port)
   modem.broadcast(port, command)
@@ -22,7 +22,16 @@ function sendCommand(command, address, port)
 end
 
 function receiveResponse()
+  modem.open(port)
+  response = table.pack(event.pull(conf.timeout, "modem_message"))
+  modem.close(port)
+  return response
+end
 
+function printResponse(response)
+  print('Waiting for response...')
+  print(response[6])
+  print("done.")
 end
 
 local args = shell.parse(...)
@@ -41,11 +50,6 @@ local command = args[1]
 sendCommand(command, address, port)
 
 if command == conf.info or command == conf.status then
-  print('Waiting for response...')
-  modem.open(port)
-  response = table.pack(event.pull("modem_message", conf.timeout))
-  print(response[6])
-  print("done.")
-  modem.close(port)
+  printResponse(receiveResponse())
 end
 

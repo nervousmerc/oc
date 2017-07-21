@@ -16,15 +16,31 @@ energy.conf = {
   [5] = 8192
 }
 
-function energy.getEnergy(addr, name)
-  local store = component.proxy(addr)
-  return energy.conf[name], store.getEnergy()
+-- return list of energy stores' objects
+local function enumerateStores()
+  local stores = component.list("ic2_te")
+  local storesList
+  local i = 1
+  for addr, name in pairs(stores) do
+    storesList[i] = component.proxy(addr)
+    i = i + 1
+  end
+  return storesList
 end
 
-function energy.getEnergyPercentage(addr, name)
-  local store = component.proxy(addr)
-  local percent = (store.getEnergy()/store.getCapacity()) * 100
-  return energy.conf[name], percent
+-- return an iterator over list of energy stores
+function energy.stores()
+  local storesList = enumerateStores()
+  local i = 1
+  return function
+      return storesList[i]
+  end
+  i = i + 1
+end
+
+-- get a current energy level of the given store in percent
+function energy.getEnergyPercentage(store)
+  return  (store.getEnergy()/store.getCapacity()) * 100
 end
 
 function energy.printInfo(addr, name)
@@ -38,8 +54,8 @@ function energy.printInfo(addr, name)
   print("\tCapacity: ", store.getCapacity())
 end
 
-for addr, name in pairs(energy.stores) do
-  energy.printInfo(addr, name)
-end
+-- for addr, name in pairs(energy.stores) do
+--   energy.printInfo(addr, name)
+-- end
 
 return energy

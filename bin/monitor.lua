@@ -11,7 +11,7 @@ while true do
   term.clear()
   for store in energy.stores() do
     io.stdout:write((string.format("\n %s %.0f%%\n",
-                                   store.name,
+                                   energy.conf[store.type],
                                    energy.getEnergyPercentage(store))))
   end
   io.stdout:flush()

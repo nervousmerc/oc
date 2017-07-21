@@ -29,12 +29,8 @@ end
 -- return an iterator over list of energy stores
 function energy.stores()
   local storesList = enumerateStores()
-  local i = 1
-  return function ()
-    current = storesList[i]
-    i = i + 1
-    return current
-  end
+  local i = 0
+  return function () i = i + 1; return storesList[i] end
 end
 
 -- get a current energy level of the given store in percent

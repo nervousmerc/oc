@@ -15,9 +15,9 @@ energy.conf = {
 }
 
 -- return list of energy stores' objects
-function energy.enumerateStores()
+local function enumerateStores()
   local stores = component.list("ic2_te")
-  local storesList
+  local storesList = {}
   local i = 1
   for addr, name in pairs(stores) do
     storesList[i] = component.proxy(addr)
@@ -38,19 +38,14 @@ function energy.getEnergyPercentage(store)
   return  (store.getEnergy()/store.getCapacity()) * 100
 end
 
-function energy.printInfo(addr, name)
-  local store = component.proxy(addr)
+function energy.printInfo(store)
   print("------------")
-  print("Address: ", addr)
-  print("Type: ", energy.conf[name])
+  print("Address: ", store.address)
+  print("Type: ", energy.conf[store.name])
   print("Energy stored: ", store.getEnergy())
   print("\tMax input: ", energy.conf[store.getSourceTier()])
   print("\tMax output: ", energy.conf[store.getSinkTier()])
   print("\tCapacity: ", store.getCapacity())
 end
-
--- for addr, name in pairs(energy.stores) do
---   energy.printInfo(addr, name)
--- end
 
 return energy

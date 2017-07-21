@@ -2,8 +2,6 @@ local component = require("component")
 
 local energy = {}
 
-energy.stores = component.list("ic2_te")
-
 energy.conf = {
   ic2_te_batbox = "BatBox",
   ic2_te_cesu = "CESU",
@@ -32,10 +30,11 @@ end
 function energy.stores()
   local storesList = enumerateStores()
   local i = 1
-  return function
-      return storesList[i]
+  return function ()
+    current = storesList[i]
+    i = i + 1
+    return current
   end
-  i = i + 1
 end
 
 -- get a current energy level of the given store in percent

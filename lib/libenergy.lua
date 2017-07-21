@@ -15,7 +15,7 @@ energy.conf = {
 }
 
 -- return list of energy stores' objects
-local function enumerateStores()
+function energy.enumerateStores()
   local stores = component.list("ic2_te")
   local storesList
   local i = 1
